@@ -8,6 +8,8 @@ import { BsFillMoonFill, BsFillSunFill } from "react-icons/bs";
 import { LinkContainer } from 'react-router-bootstrap';
 import { useContext } from 'react';
 import { AuthContext } from '../AuthProvider/AuthProvider';
+import { GoogleAuthProvider } from 'firebase/auth';
+const provider = new GoogleAuthProvider();
 
 const Header = () => {
     const { user, logOut } = useContext(AuthContext);

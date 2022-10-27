@@ -6,8 +6,17 @@ import Form from 'react-bootstrap/Form';
 import logo from '../assets/Logo.png';
 import { BsFillMoonFill, BsFillSunFill } from "react-icons/bs";
 import { LinkContainer } from 'react-router-bootstrap';
+import { useContext } from 'react';
+import { AuthContext } from '../AuthProvider/AuthProvider';
 
 const Header = () => {
+    const { user, logOut } = useContext(AuthContext);
+    console.log(user);
+    const HandleLogOut = () => {
+        logOut()
+            .then(() => { })
+            .catch(() => { })
+    }
     return (
         <Navbar collapseOnSelect expand="lg" bg="light" variant="light">
             <Container>
@@ -44,16 +53,24 @@ const Header = () => {
                         <LinkContainer to='/blog'>
                             <Nav.Link>Blog</Nav.Link>
                         </LinkContainer>
-                        <LinkContainer to='/login'>
-                            <Nav.Link>Login</Nav.Link>
-                        </LinkContainer>
-                        <LinkContainer to='/signup'>
-                            <Nav.Link>SignUp</Nav.Link>
-                        </LinkContainer>
+
+                        {
+                            user ? <LinkContainer to='/'>
+                                <Nav.Link onClick={HandleLogOut}>Logout</Nav.Link>
+                            </LinkContainer>
+                                : <><LinkContainer to='/login'>
+                                    <Nav.Link>Login</Nav.Link>
+                                </LinkContainer>
+                                    <LinkContainer to='/signup'>
+                                        <Nav.Link>Signup</Nav.Link>
+                                    </LinkContainer></>
+
+                        }
+
                     </Nav>
                 </Navbar.Collapse>
             </Container>
-        </Navbar>
+        </Navbar >
     );
 };
 

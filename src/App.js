@@ -3,7 +3,7 @@ import './App.css';
 import Blog from './components/Blog';
 import Courses from './components/Courses';
 import Faq from './components/Faq';
-import Header from './components/Header';
+
 import Login from './components/Login';
 import Main from './components/Main/Main';
 import Signup from './components/Signup';
@@ -38,7 +38,7 @@ function App() {
     }
   ]);
   return (
-    <div className="App">
+    <div>
       <RouterProvider router={router}></RouterProvider>
     </div>
   );

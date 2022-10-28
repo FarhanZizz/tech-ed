@@ -4,6 +4,7 @@ import Blog from './components/Blog';
 import Checkout from './components/Checkout';
 import CourseDetails from './components/CourseDetails';
 import Courses from './components/Courses';
+import ErrorRoute from './components/ErrorRoute';
 import Faq from './components/Faq';
 
 import Login from './components/Login';
@@ -60,6 +61,10 @@ function App() {
           path: 'faq',
           element: <Faq></Faq>
         },
+        {
+          path: '*',
+          element: <ErrorRoute></ErrorRoute>
+        }
       ]
     }
   ]);

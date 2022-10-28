@@ -26,21 +26,21 @@ function App() {
         {
           path: '/categories/:categoryid',
           loader: async ({ params }) => {
-            return fetch(`http://localhost:5000/categories/${params.categoryid}`)
+            return fetch(`https://tech-ed-server.vercel.app/categories/${params.categoryid}`)
           },
           element: <Courses></Courses>
         },
         {
           path: '/courses/:courseid',
           loader: async ({ params }) => {
-            return fetch(`http://localhost:5000/courses/${params.courseid}`)
+            return fetch(`https://tech-ed-server.vercel.app/courses/${params.courseid}`)
           },
           element: <CourseDetails></CourseDetails>
         },
         {
           path: '/checkout/:courseid',
           loader: async ({ params }) => {
-            return fetch(`http://localhost:5000/courses/${params.courseid}`)
+            return fetch(`https://tech-ed-server.vercel.app/courses/${params.courseid}`)
           },
           element: <PrivateRoute><Checkout></Checkout></PrivateRoute>
         },

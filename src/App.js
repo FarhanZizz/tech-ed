@@ -1,4 +1,3 @@
-import { async } from '@firebase/util';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import './App.css';
 import Blog from './components/Blog';
@@ -10,6 +9,7 @@ import Faq from './components/Faq';
 
 import Login from './components/Login';
 import Main from './components/Main/Main';
+import PrivateRoute from './components/PrivateRoute';
 import Signup from './components/Signup';
 
 function App() {
@@ -42,7 +42,7 @@ function App() {
           loader: async ({ params }) => {
             return fetch(`http://localhost:5000/courses/${params.courseid}`)
           },
-          element: <Checkout></Checkout>
+          element: <PrivateRoute><Checkout></Checkout></PrivateRoute>
         },
 
         {

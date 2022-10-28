@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { BsGithub, BsGoogle } from 'react-icons/bs';
+import { useLocation } from 'react-router-dom';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../AuthProvider/AuthProvider';
 
@@ -9,13 +10,16 @@ const Login = () => {
     const navigate = useNavigate();
     const [error, setError] = useState('');
     const { login, googleLogin, githubLogin } = useContext(AuthContext);
+    const location = useLocation();
+
+    const from = location.state?.from?.pathname || '/'
 
     const HandleGithubSignIn = () => {
         githubLogin()
             .then((result) => {
                 const user = result.user;
                 setError('');
-                navigate('/');
+                navigate(from, { replace: true });
             })
             .catch((error) => {
                 const errorMessage = error.message;
@@ -27,7 +31,7 @@ const Login = () => {
             .then((result) => {
                 const user = result.user;
                 setError('');
-                navigate('/')
+                navigate(from, { replace: true })
             })
             .catch((error) => {
                 const errorMessage = error.message;
@@ -47,7 +51,7 @@ const Login = () => {
                 const user = result.user;
                 form.reset();
                 setError('');
-                navigate('/')
+                navigate(from, { replace: true })
             })
             .catch((error) => {
                 const errorMessage = error.message;

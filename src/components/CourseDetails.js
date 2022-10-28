@@ -1,8 +1,6 @@
 import React from 'react';
 import { useLoaderData } from 'react-router-dom';
-import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
-import { Container, Image } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
 const CourseDetails = () => {

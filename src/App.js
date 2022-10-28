@@ -1,6 +1,9 @@
+import { async } from '@firebase/util';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import './App.css';
 import Blog from './components/Blog';
+import Checkout from './components/Checkout';
+import CourseDetails from './components/CourseDetails';
 import Courselist from './components/Courselist';
 import Courses from './components/Courses';
 import Faq from './components/Faq';
@@ -27,6 +30,21 @@ function App() {
           },
           element: <Courses></Courses>
         },
+        {
+          path: '/courses/:courseid',
+          loader: async ({ params }) => {
+            return fetch(`http://localhost:5000/courses/${params.courseid}`)
+          },
+          element: <CourseDetails></CourseDetails>
+        },
+        {
+          path: '/checkout/:courseid',
+          loader: async ({ params }) => {
+            return fetch(`http://localhost:5000/courses/${params.courseid}`)
+          },
+          element: <Checkout></Checkout>
+        },
+
         {
           path: 'login',
           element: <Login></Login>

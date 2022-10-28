@@ -1,6 +1,7 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import './App.css';
 import Blog from './components/Blog';
+import Courselist from './components/Courselist';
 import Courses from './components/Courses';
 import Faq from './components/Faq';
 
@@ -14,6 +15,18 @@ function App() {
       path: "/",
       element: <Main></Main>,
       children: [
+
+        {
+          path: '/',
+          element: <Courses></Courses>
+        },
+        {
+          path: '/categories/:categoryid',
+          loader: async ({ params }) => {
+            return fetch(`http://localhost:5000/categories/${params.categoryid}`)
+          },
+          element: <Courses></Courses>
+        },
         {
           path: 'login',
           element: <Login></Login>
@@ -21,10 +34,6 @@ function App() {
         {
           path: 'signup',
           element: <Signup></Signup>
-        },
-        {
-          path: 'courses',
-          element: <Courses></Courses>
         },
         {
           path: 'blog',

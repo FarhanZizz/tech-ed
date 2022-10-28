@@ -8,12 +8,11 @@ import { BsFillMoonFill, BsFillSunFill } from "react-icons/bs";
 import { LinkContainer } from 'react-router-bootstrap';
 import { useContext } from 'react';
 import { AuthContext } from '../AuthProvider/AuthProvider';
-import { GoogleAuthProvider } from 'firebase/auth';
-const provider = new GoogleAuthProvider();
+import { Image, OverlayTrigger, Tooltip } from 'react-bootstrap';
+
 
 const Header = () => {
     const { user, logOut } = useContext(AuthContext);
-    console.log(user);
     const HandleLogOut = () => {
         logOut()
             .then(() => { })
@@ -46,7 +45,7 @@ const Header = () => {
                             />
                             <BsFillMoonFill></BsFillMoonFill>
                         </Nav>
-                        <LinkContainer to='/courses'>
+                        <LinkContainer to='/'>
                             <Nav.Link>Courses</Nav.Link>
                         </LinkContainer>
                         <LinkContainer to='/faq'>
@@ -55,9 +54,25 @@ const Header = () => {
                         <LinkContainer to='/blog'>
                             <Nav.Link>Blog</Nav.Link>
                         </LinkContainer>
+                        <Nav.Link>
+                            {
+                                user?.photoURL && <OverlayTrigger
+                                    key={'bottom'}
+                                    placement={'bottom'}
+                                    overlay={
+                                        <Tooltip id={`tooltip-bottom`}>
+                                            {user.displayName}
+                                        </Tooltip>
+                                    }
+                                >
+                                    <Image roundedCircle style={{ height: '30px' }} src={user.photoURL}></Image>
+                                </OverlayTrigger>
+
+                            }
+                        </Nav.Link>
 
                         {
-                            user ? <LinkContainer to='/'>
+                            user?.uid ? <LinkContainer to='/'>
                                 <Nav.Link onClick={HandleLogOut}>Logout</Nav.Link>
                             </LinkContainer>
                                 : <><LinkContainer to='/login'>
@@ -68,6 +83,7 @@ const Header = () => {
                                     </LinkContainer></>
 
                         }
+
 
                     </Nav>
                 </Navbar.Collapse>

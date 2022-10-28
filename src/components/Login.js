@@ -15,7 +15,7 @@ const Login = () => {
             .then((result) => {
                 const user = result.user;
                 setError('');
-                navigate('/')
+                navigate('/');
             })
             .catch((error) => {
                 const errorMessage = error.message;
